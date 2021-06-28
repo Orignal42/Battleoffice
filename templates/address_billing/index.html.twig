@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AddressBilling index{% endblock %}
+
+{% block body %}
+    <h1>AddressBilling index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Address_billing_line1</th>
+                <th>Address_billing_line2</th>
+                <th>City</th>
+                <th>Zipcode</th>
+                <th>Country</th>
+                <th>Phone</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for address_billing in address_billings %}
+            <tr>
+                <td>{{ address_billing.id }}</td>
+                <td>{{ address_billing.firstname }}</td>
+                <td>{{ address_billing.lastname }}</td>
+                <td>{{ address_billing.addressBillingLine1 }}</td>
+                <td>{{ address_billing.addressBillingLine2 }}</td>
+                <td>{{ address_billing.city }}</td>
+                <td>{{ address_billing.zipcode }}</td>
+                <td>{{ address_billing.country }}</td>
+                <td>{{ address_billing.phone }}</td>
+                <td>
+                    <a href="{{ path('address_billing_show', {'id': address_billing.id}) }}">show</a>
+                    <a href="{{ path('address_billing_edit', {'id': address_billing.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('address_billing_new') }}">Create new</a>
+{% endblock %}

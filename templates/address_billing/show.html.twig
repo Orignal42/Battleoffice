@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AddressBilling{% endblock %}
+
+{% block body %}
+    <h1>AddressBilling</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ address_billing.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ address_billing.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ address_billing.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Address_billing_line1</th>
+                <td>{{ address_billing.addressBillingLine1 }}</td>
+            </tr>
+            <tr>
+                <th>Address_billing_line2</th>
+                <td>{{ address_billing.addressBillingLine2 }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ address_billing.city }}</td>
+            </tr>
+            <tr>
+                <th>Zipcode</th>
+                <td>{{ address_billing.zipcode }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ address_billing.country }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ address_billing.phone }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('address_billing_index') }}">back to list</a>
+
+    <a href="{{ path('address_billing_edit', {'id': address_billing.id}) }}">edit</a>
+
+    {{ include('address_billing/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New AddressBilling{% endblock %}
+
+{% block body %}
+    <h1>Create new AddressBilling</h1>
+
+    {{ include('address_billing/_form.html.twig') }}
+
+    <a href="{{ path('address_billing_index') }}">back to list</a>
+{% endblock %}
