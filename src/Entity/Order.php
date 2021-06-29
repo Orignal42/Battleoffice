@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\OrderRepository;
-use App\Entity\AddressBilling;
+use App\Entity\AddressBillingRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -28,10 +28,7 @@ class Order
      */
     private $payment_method;
 
-    /**
-     * @ORM\OneToMany(targetEntity=AddressBilling::class, mappedBy="Order_AddressBilling")
-     */
-    private $adressbilling;
+ 
 
     /**
      * @ORM\Column(type="boolean")
@@ -53,14 +50,14 @@ class Order
      */
     private $client;
 
+    /**
+     * @ORM\OneToOne(targetEntity=AddressBilling::class, cascade={"persist", "remove"})
+     */
+    private $Address;
 
 
-    public function __construct()
-    {
-      
-        $this->adressbilling = new ArrayCollection();
-    
-    }
+
+
 
     public function getId(): ?int
     {
@@ -126,6 +123,18 @@ class Order
     public function setClient(?Client $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getAddress(): ?AddressBilling
+    {
+        return $this->Address;
+    }
+
+    public function setAddress(?AddressBilling $Address): self
+    {
+        $this->Address = $Address;
 
         return $this;
     }

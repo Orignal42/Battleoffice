@@ -25,32 +25,33 @@
             </div>
         </div>
     </section>
-    <form method="post">
+    {{ form_start(form) }}
         <div class="container">
             <div class="row">
                 <div class="content col s12 m12 l8">
 
                     <section class="formulas">
+                     
                         <div class="card bg_grey">
                             <div class="card-content">
                                 <span class="card-title color_product_primary center-align">Étape 1</span>
                                 <p class="h6 center-align">Choisissez votre produit</p>
                             </div>
                         </div>
-                            { % set reduprice=0%}
-                            {% for product in products %}
-                             {% set reduprice=0 %}
-                            {% set reduprice = (product.price * 0.32) |round  %}
+                        {% for product in products %}
+                            {% set reduprice=0 %}
+                             {% set reduprice = (product.price * 0.32) |round  %}
                         
                         <label class="cure-radio">
-                            <input name="order[cart][cart_products][0]" value="{{product.id}}" type="radio">
-                            <article>
-                                <div class="card center-align">
-                                    <div class="row">
-                                        <div class="col s12 m12 l4">
-                                            <div class="image-content">
-                                                <img src="{{asset (product.picture)}}" alt="10 Nerf Elite Jolt© + 2 offerts" class="responsive-img">
-                                            </div>
+                             
+                                 <input name="order[cart][cart_products][0]" value="{{product.id}}" type="radio">
+                                     <article>
+                                      <div class="card center-align">
+                                           <div class="row">
+                                               <div class="col s12 m12 l4">
+                                                     <div class="image-content">
+                                                      <img src="{{asset (product.picture)}}" alt="10 Nerf Elite Jolt© + 2 offerts" class="responsive-img">
+                                                     </div>
                                         </div>
                                         <div class="col s12 m6 l4">
                                             <div class="card-content">
@@ -82,11 +83,11 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                {% endfor %}
+                          
+                              
                             </article>
                         </label>
-                      
+                        {% endfor %}
                      
                             </article>
                         </label>
@@ -218,7 +219,7 @@
                 </aside>
             </div>
         </div>
-    </form>
+ {{ form_end(form) }}
 {% endblock %}
 {% block javascripts %}
     <script src="https://js.stripe.com/v3/"></script>

@@ -29,6 +29,7 @@ class ClientType extends AbstractType
                     'Luxembourg'=>'Luxembourg'
                 ],
             ])
+           
             ->add('phone')
             ->add('email', RepeatedType::class,[
             
@@ -36,6 +37,7 @@ class ClientType extends AbstractType
                 'first_options'  => ['label' => 'Email'],
                 'second_options' => ['label' => 'Confirm_Email']
             ])  
+            
           
         ;
     }

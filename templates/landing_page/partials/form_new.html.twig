@@ -109,77 +109,77 @@
     </div>
     <ul class="collapsible">
         <li>
-            <div class="collapsible-header"><i class="material-icons">markunread_mailbox</i>Adresse de livraison différente ?</div>
+            <div class="collapsible-header"><i class="material-icons"></i>Adresse de livraison différente ?</div>
             <div class="collapsible-body">
              <div class="input-field">
             
                 
-                {{ form_widget(form.addressbilling.firstname)}}
-                {{ form_label(form.addressbilling.firstname, 'votre nom', {
+                {{ form_widget(form.Address.firstname)}}
+                {{ form_label(form.Address.firstname, 'votre nom', {
                     'label_attr': {'class': 'client'}
                 }) }}
-                 {{ form_errors(form.addressbilling.firstname) }}
+                 {{ form_errors(form.Address.firstname) }}
                 </div>
                 <div class="input-field">
             
                 
-                {{ form_widget(form.addressbilling.lastname)}}
-                {{ form_label(form.addressbilling.lastname, 'votre prénom', {
+                {{ form_widget(form.Address.lastname)}}
+                {{ form_label(form.Address.lastname, 'votre prénom', {
                     'label_attr': {'class': 'client'}
                 }) }}
-                 {{ form_errors(form.addressbilling.lastname) }}
+                 {{ form_errors(form.Address.lastname) }}
                 </div>
                 <div class="input-field">
             
                 
-                {{ form_widget(form.addressbilling.address_billing_line1)}}
-                {{ form_label(form.addressbilling.address_billing_line1, 'votre adresse', {
+                {{ form_widget(form.Address.address_billing_line1)}}
+                {{ form_label(form.Address.address_billing_line1, 'votre adresse', {
                     'label_attr': {'class': 'client'}
                 }) }}
-                 {{ form_errors(form.addressbilling.address_billing_line1) }}
+                 {{ form_errors(form.Address.address_billing_line1) }}
                 </div>
                 <div class="input-field">
             
                 
-                {{ form_widget(form.addressbilling.address_billing_line2)}}
-                {{ form_label(form.addressbilling.address_billing_line2, "votre complément d'adresse", {
+                {{ form_widget(form.Address.address_billing_line2)}}
+                {{ form_label(form.Address.address_billing_line2, "votre complément d'adresse", {
                     'label_attr': {'class': 'client'}
                 }) }}
-                 {{ form_errors(form.addressbilling.address_billing_line2) }}
+                 {{ form_errors(form.Address.address_billing_line2) }}
                 </div>
                 <div class="input-field">
             
                 
-                {{ form_widget(form.addressbilling.city)}}
-                {{ form_label(form.addressbilling.city, 'votre ville', {
+                {{ form_widget(form.Address.city)}}
+                {{ form_label(form.Address.city, 'votre ville', {
                     'label_attr': {'class': 'client'}
                 }) }}
-                 {{ form_errors(form.addressbilling.city) }}
+                 {{ form_errors(form.Address.city) }}
                 </div>
                  <div class="input-field">
                            
-                {{ form_widget(form.addressbilling.zipcode)}}
-                {{ form_label(form.addressbilling.zipcode, 'votre code postale', {
+                {{ form_widget(form.Address.zipcode)}}
+                {{ form_label(form.Address.zipcode, 'votre code postale', {
                     'label_attr': {'class': 'client'}
                 }) }}
-                 {{ form_errors(form.addressbilling.zipcode) }}
+                 {{ form_errors(form.Address.zipcode) }}
                 </div>
                 <div class="input-field">
                            
-                {{ form_widget(form.addressbilling.country)}}
-                {{ form_label(form.addressbilling.country, 'votre pays', {
+                {{ form_widget(form.Address.country)}}
+                {{ form_label(form.Address.country, 'votre pays', {
                     'label_attr': {'class': 'client'}
                 }) }}
-                 {{ form_errors(form.addressbilling.country) }}
+                 {{ form_errors(form.Address.country) }}
                 </div>
                 <div class="input-field">
             
                 
-                {{ form_widget(form.addressbilling.phone)}}
-                {{ form_label(form.addressbilling.phone, 'votre téléphone', {
-                    'label_attr': {'class': 'addressbilling'}
+                {{ form_widget(form.Address.phone)}}
+                {{ form_label(form.Address.phone, 'votre téléphone', {
+                    'label_attr': {'class': 'Address'}
                 }) }}
-                 {{ form_errors(form.addressbilling.phone) }}
+                 {{ form_errors(form.Address.phone) }}
             </div>
             </div>
         </li>

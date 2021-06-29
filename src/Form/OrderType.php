@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Form;
-use App\Form\AddressBillingType;
+
 use App\Form\ClientType;
+use App\Form\AddressBillingType;
 use App\Entity\Order;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,7 +14,7 @@ class OrderType extends AbstractType
     {
         $builder
             ->add('client', ClientType::class)
-            ->add('addressbilling', AddressBillingType::class)
+            ->add('Address', AddressBillingType::class)
         ;
     }
 
