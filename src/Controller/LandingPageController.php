@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Form\AddressBillingType;
+use App\Form\OrderType;
 use App\Form\ClientType;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,15 +22,15 @@ class LandingPageController extends AbstractController
      */
     public function index(Request $request, ProductRepository $productRepository, ClientType $clients)
     {
-        //Your code here
-        $form = $this->createForm(ClientType::class);
-        $client= new Client();
-        $adress= new AddressBilling();
+        //Your code here LES LIGNES DESSOUS PERMETTENT DE CREER UN FORMULAIRE
+        $form = $this->createForm(OrderType::class);
+        $form->handleRequest($request);
+       //PERMET DE RETOURNER ET DE CREER LA VIEW DES PRODUITS
         return $this->render('landing_page/index.html.twig', [
             'products'=>$productRepository-> findall(),
-            'form'=>$form->createView(),
-            'client' => $client,
-            'adressbilling'=>$adress
+//PERMET DE CREER LA VIEW DU FORMULAIRE
+            'form'=>$form->createView()
+        
         ]);
     }
     /**

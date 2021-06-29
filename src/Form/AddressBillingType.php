@@ -6,7 +6,7 @@ use App\Entity\AddressBilling;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 class AddressBillingType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -19,10 +19,11 @@ class AddressBillingType extends AbstractType
             ->add('city')
             ->add('zipcode')
             ->add('country', ChoiceType::class, [
-                'choices'  => [                    
+                'mapped' => false, 
+                'choices'  => [               
                 'France' => 'France',
                 'Belgique' => 'Belgique',
-                'Luxembourg'=>'Luxembourg',
+                'Luxembourg'=>'Luxembourg'
             ],
         ])
             ->add('phone')
