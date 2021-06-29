@@ -6,11 +6,15 @@ use App\Entity\Client;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+
 
 class ClientType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    {   
         $builder
             ->add('firstname')
             ->add('lastname')
@@ -18,9 +22,21 @@ class ClientType extends AbstractType
             ->add('address_line2')
             ->add('city')
             ->add('zipcode')
-            ->add('country')
+            ->add('country', ChoiceType::class, [
+                    'choices'  => [                    
+                    'France' => 'France',
+                    'Belgique' => 'Belgique',
+                    'Luxembourg'=>'Luxembourg',
+                ],
+            ])
             ->add('phone')
-            ->add('email')
+            ->add('email', RepeatedType::class,[
+            
+       
+                'first_options'  => ['label' => 'Email'],
+                'second_options' => ['label' => 'Confirm_Email']
+            ])  
+          
         ;
     }
 

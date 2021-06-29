@@ -76,13 +76,13 @@ class Product
         return $this;
     }
 
-    public function __toString(): string
-    {
+    // public function __toString(): string
+    // {
     
-        return $this->getPrice();
-               $this->getId();
-               $this->getName();
-    }
+    //     return $this->getPrice();
+    //            $this->getId();
+    //            $this->getName();
+    // }
 }
 
 

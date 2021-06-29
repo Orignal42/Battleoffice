@@ -1,3 +1,5 @@
+{{ form_start(form) }}
+
 <style type="text/css">
     .form-error {
         color: red;
@@ -16,109 +18,174 @@
         <p class="h6 center-align">Remplissez ce formulaire</p>
         <div class="form-wrapper">
             <div class="input-field">
-                <input type="text">
-                <label>Prénom</label>
-                <div class="form-error"></div>
+             
+                
+                {{ form_widget(form.client.lastname)}}
+                {{ form_label(form.client.lastname, 'votre nom', {
+                    'label_attr': {'class': 'client'}
+                }) }}
+                 {{ form_errors(form.client.lastname) }}
             </div>
             <div class="input-field">
-                <input type="text">
-                <label>Nom</label>
-                <div class="form-error"></div>
+            
+                
+                {{ form_widget(form.client.firstname)}}
+                {{ form_label(form.client.firstname, 'votre prénom', {
+                    'label_attr': {'class': 'client'}
+                }) }}
+                 {{ form_errors(form.client.firstname) }}
             </div>
             <div class="input-field">
-                <input type="text">
-                <label>Adresse</label>
-                <div class="form-error"></div>
+              
+                
+                {{ form_widget(form.client.address_line1)}}
+                {{ form_label(form.client.address_line1, 'votre adresse', {
+                    'label_attr': {'class': 'client'}
+                }) }}
+               {{ form_errors(form.client.address_line1) }}
             </div>
             <div class="input-field">
-                <input type="text">
-                <label>Complément adr.</label>
-                <div class="form-error"></div>
+         
+                
+                {{ form_widget(form.client.address_line2)}}
+                {{ form_label(form.client.address_line2, "votre complément d'adresse", {
+                    'label_attr': {'class': 'client'}
+                }) }}
+                 {{ form_errors(form.client.address_line2) }}
             </div>
             <div class="input-field">
-                <input type="text">
-                <label>Ville</label>
-                <div class="form-error"></div>
+           
+                
+                {{ form_widget(form.client.city)}}
+                {{ form_label(form.client.city, 'votre ville', {
+                    'label_attr': {'class': 'client'}
+                }) }}
+                {{ form_errors(form.client.city) }}
             </div>
             <div class="input-field">
-                <input type="text">
-                <label>Code postal</label>
-                <div class="form-error"></div>
+                
+                {{ form_widget(form.client.zipcode)}}
+                {{ form_label(form.client.zipcode, 'votre code postale', {
+                    'label_attr': {'class': 'client'}
+                }) }}
+                 {{ form_errors(form.client.zipcode) }}
             </div>
             <div class="input-field">
-                <select>
-                    <option>France</option>
+                {{ form_widget(form.client.country)}}
+                {{ form_label(form.client.country, 'votre pays', {
+                    'label_attr': {'class': 'client'}
+                }) }}
+                  
                 </select>
-                <label>Pays</label>
-                <div class="form-error"></div>
+             
+             {{ form_errors(form.client.country) }}
             </div>
             <div class="input-field">
-                <input type="text">
-                <label>Téléphone</label>
-                <div class="form-error"></div>
+         
+                {{ form_widget(form.client.phone)}}
+                {{ form_label(form.client.phone, 'votre téléphone', {
+                    'label_attr': {'class': 'client'}
+                }) }}
+                {{ form_errors(form.client.phone) }}
             </div>
             <div class="input-field">
-                <input type="text">
-                <label>Email</label>
-                <div class="form-error"></div>
-            </div>
-            <div class="input-field">
-                <input type="text">
-                <label>Confirmation email</label>
-                <div class="form-error"></div>
-            </div>
+                         
+                {{ form_widget(form.client.email.first)}}
+                {{ form_label(form.client.email.first, 'votre email', {
+                    'label_attr': {'class': 'email'}
+                }) }}
+               {{ form_errors(form.client.email.first) }}
+            </div> 
+        
+               <div class="input-field">
+                         
+                {{ form_widget(form.client.email.second)}}
+                {{ form_label(form.client.email.second, 'votre email', {
+                    'label_attr': {'class': 'email'}
+                }) }}
+               {{ form_errors(form.client.email.second) }}
+            </div> 
         </div>
     </div>
     <ul class="collapsible">
         <li>
             <div class="collapsible-header"><i class="material-icons">markunread_mailbox</i>Adresse de livraison différente ?</div>
             <div class="collapsible-body">
-                <div class="input-field">
-                    <input type="text">
-                    <label>Prénom</label>
-                    <div class="form-error"></div>
+             <div class="input-field">
+            
+                
+                {{ form_widget(form.adressbilling.firstname)}}
+                {{ form_label(form.adressbilling.firstname, 'votre prénom', {
+                    'label_attr': {'class': 'client'}
+                }) }}
+                 {{ form_errors(form.adressbilling.firstname) }}
                 </div>
                 <div class="input-field">
-                    <input type="text">
-                    <label>Nom</label>
-                    <div class="form-error"></div>
+            
+                
+                {{ form_widget(form.adressbilling.lastname)}}
+                {{ form_label(form.adressbilling.lastname, 'votre prénom', {
+                    'label_attr': {'class': 'client'}
+                }) }}
+                 {{ form_errors(form.adressbilling.lastname) }}
                 </div>
                 <div class="input-field">
-                    <input type="text">
-                    <label>Adresse</label>
-                    <div class="form-error"></div>
+            
+                
+                {{ form_widget(form.adressbilling.address_line1)}}
+                {{ form_label(form.adressbilling.address_line1, 'votre prénom', {
+                    'label_attr': {'class': 'client'}
+                }) }}
+                 {{ form_errors(form.adressbilling.address_line1) }}
                 </div>
                 <div class="input-field">
-                    <input type="text">
-                    <label>Complément adr.</label>
-                    <div class="form-error"></div>
+            
+                
+                {{ form_widget(form.adressbilling.address_line2)}}
+                {{ form_label(form.adressbilling.address_line2, 'votre prénom', {
+                    'label_attr': {'class': 'client'}
+                }) }}
+                 {{ form_errors(form.adressbilling.address_line2) }}
                 </div>
                 <div class="input-field">
-                    <input type="text">
-                    <label>Ville</label>
-                    <div class="form-error"></div>
+            
+                
+                {{ form_widget(form.adressbilling.city)}}
+                {{ form_label(form.adressbilling.city, 'votre prénom', {
+                    'label_attr': {'class': 'client'}
+                }) }}
+                 {{ form_errors(form.adressbilling.city) }}
+                </div>
+                 <div class="input-field">
+                           
+                {{ form_widget(form.adressbilling.zipcode)}}
+                {{ form_label(form.adressbilling.zipcode, 'votre prénom', {
+                    'label_attr': {'class': 'client'}
+                }) }}
+                 {{ form_errors(form.adressbilling.zipcode) }}
                 </div>
                 <div class="input-field">
-                    <input type="text">
-                    <label>Code postal</label>
-                    <div class="form-error"></div>
+                           
+                {{ form_widget(form.adressbilling.country)}}
+                {{ form_label(form.adressbilling.country, 'votre prénom', {
+                    'label_attr': {'class': 'client'}
+                }) }}
+                 {{ form_errors(form.adressbilling.country) }}
                 </div>
                 <div class="input-field">
-                    <select>
-                        <option>France</option>
-                    </select>
-                    <label>Pays</label>
-                    <div class="form-error"></div>
-                </div>
-                <div class="input-field">
-                    <input type="text">
-                    <label>Téléphone</label>
-                    <div class="form-error"></div>
-                </div>
+            
+                
+                {{ form_widget(form.adressbilling.phone)}}
+                {{ form_label(form.adressbilling.phone, 'votre prénom', {
+                    'label_attr': {'class': 'addressbilling'}
+                }) }}
+                 {{ form_errors(form.adressbilling.phone) }}
+            </div>
             </div>
         </li>
     </ul>
 </div>
+
 {# Etape 3 #}
 <div class="card step_3">
     <div class="card-content">
@@ -151,3 +218,5 @@
         </ul>
     </div>
 </div>
+
+{{ form_end(form) }}

@@ -18,7 +18,13 @@ class AddressBillingType extends AbstractType
             ->add('address_billing_line2')
             ->add('city')
             ->add('zipcode')
-            ->add('country')
+            ->add('country', ChoiceType::class, [
+                'choices'  => [                    
+                'France' => 'France',
+                'Belgique' => 'Belgique',
+                'Luxembourg'=>'Luxembourg',
+            ],
+        ])
             ->add('phone')
             ->add('user')
         ;
