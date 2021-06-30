@@ -22,7 +22,7 @@ class ClientType extends AbstractType
             ->add('city')
             ->add('zipcode')
             ->add('country', ChoiceType::class, [
-                'mapped' => false,    
+                  
                 'choices'  => [    
                     'France' => 'France',
                     'Belgique' => 'Belgique',

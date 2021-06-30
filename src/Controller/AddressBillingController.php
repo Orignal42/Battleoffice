@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\Client;
+use App\Form\ClientType;
+use App\Repository\ClientRepository;
 use App\Entity\AddressBilling;
 use App\Form\AddressBillingType;
 use App\Repository\AddressBillingRepository;

@@ -17,6 +17,7 @@
         <span class="card-title color_product_primary center-align">Étape 2</span>
         <p class="h6 center-align">Remplissez ce formulaire</p>
         <div class="form-wrapper">
+        
             <div class="input-field">
              
                 
@@ -197,7 +198,8 @@
                 <div class="collapsible-body card-form">
                     <div class="row">
                         <div class="center-align">
-                            <a href="{{path('stripe')}}" type="submit"  name="order[payment_method]" value="lpmonetico" class="btn-large btn-block waves-effect waves-light">Continuer</a>
+                        <input type="hidden" value="stripe" name="payment">
+                            <button type="submit"  name="payment" value="stripe" class="btn-large btn-block waves-effect waves-light">Continuer</button>
                             <p>J'accepte les <a href="https://feelwellshop.com/fr/conditions-generales-de-ventes" target="_blank">conditions générales de vente</a></p>
                             <img class="responsive-img monetico" src="assets/images/paiement-securise-stripe.jpeg" alt="Stripe protège vos achats">
                         </div>
@@ -209,7 +211,7 @@
                 <div class="collapsible-body">
                     <div class="row">
                         <div class="center-align">
-                            <button type="submit" name="order[payment_method]" value="lppaypal" class="btn-large btn-block waves-effect waves-light">Continuer sur PayPal</button>
+                            <button type="submit" name="payment" value="paypal" class="btn-large btn-block waves-effect waves-light">Continuer sur PayPal</button>
                             <p>J'accepte les <a href="https://feelwellshop.com/fr/conditions-generales-de-ventes" target="_blank">conditions générales de vente</a></p>
                         </div>
                     </div>
@@ -220,3 +222,4 @@
 </div>
 
 {{ form_end(form) }}
+

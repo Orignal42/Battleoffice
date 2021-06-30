@@ -43,8 +43,8 @@
                              {% set reduprice = (product.price * 0.32) |round  %}
                         
                         <label class="cure-radio">
-                             
-                                 <input name="order[cart][cart_products][0]" value="{{product.id}}" type="radio">
+                                
+                                 <input name="id" value="{{product.id}}" type="radio">
                                      <article>
                                       <div class="card center-align">
                                            <div class="row">
@@ -62,7 +62,7 @@
                                                     + 4 OFFERTS
                                                 </p>
                                                 <p class="h4">
-                                                    {{product.price - reduprice}}                                                    <span class="h6"><br>au lieu de <del class="h5 color_brand_secondary">{{product.price}}</del></span>
+                                                    {{product.price - reduprice}}0€                                                   <span class="h6"><br>au lieu de <del class="h5 color_brand_secondary">{{product.price}}0€</del></span>
                                                 </p>
                                             </div>
                                         </div>

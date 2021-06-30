@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\Order;
+use App\Entity\Client;
+use App\Entity\AddressBilling;
 use App\Form\OrderType;
+use App\Repository\OrderRepository;
 use App\Form\ClientType;
 use App\Form\AddressBillingType;
 use App\Repository\ProductRepository;
@@ -11,8 +14,8 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Client;
-use App\Entity\AddressBilling;
+
+
 
 
 class LandingPageController extends AbstractController
@@ -21,19 +24,55 @@ class LandingPageController extends AbstractController
      * @Route("/", name="landing_page")
      * @throws \Exception
      */
-    public function index(Request $request, ProductRepository $productRepository, ClientType $clients)
-    {
-        //Your code here LES LIGNES DESSOUS PERMETTENT DE CREER UN FORMULAIRE
-        $form = $this->createForm(OrderType::class);
-        $form->handleRequest($request);
-       //PERMET DE RETOURNER ET DE CREER LA VIEW DES PRODUITS
+
+
+    public function index(Request $request, ProductRepository $productRepository)
+    {      
+        $order= new Order();
+
+     
+       //Your code here LES LIGNES DESSOUS PERMETTENT DE CREER UN FORMULAIRE
+        $form = $this->createForm(OrderType::class, $order);
+        $form->handleRequest($request);    
+
+          if ($form->isSubmitted() && $form->isValid()) {   
+                  
+            
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($order);
+            $entityManager->flush();
+          
+
+            return $this->redirectToRoute('stripe');
+        }
+
+
+
+       //PERMET DE RETOURNER ET DE CREER Les cartes DES PRODUITS dans l'index 
         return $this->render('landing_page/index.html.twig', [
             'products'=>$productRepository-> findall(),
-//PERMET DE CREER LA VIEW DU FORMULAIRE
-       'form'=>$form->createView()
-        
+        //PERMET DE CREER LA Vue DU FORMULAIRE
+            'form'=>$form->createView()  
         ]);
-    }
+        
+        $productid=$request->get('id');
+        $product=$productRepository->findOneBy(['id'=>$productid]);
+        $order->setProduct($product); 
+        
+
+        
+    //  \Stripe\Stripe::setApiKey('sk_test_51IudYJE6zq9JtjMeKaLVqVeD5DU44TdEw2kFMuak62VLwymNNoUTQpvqJEgaHZCAzh10DAo6f6P9O4bJsLc5qzSY00IVms15NF');
+    //  $paymentIntent = \Stripe\PaymentIntent::create([
+    //      'amount' => $order->getPrice()*100,
+    //      'currency' => 'eur'
+    //  ]);
+    //  $output = [
+    //      'clientSecret' => $paymentIntent->client_secret,
+    //  ];
+
+ 
+
+}      
     /**
      * @Route("/confirmation", name="confirmation")
      */
@@ -51,6 +90,16 @@ class LandingPageController extends AbstractController
     public function stripe()
     {
         return $this->render('landing_page/partials/stripe.html.twig', [
+
+        ]);
+    }
+
+      /**
+     * @Route("/paypal", name="paypal")
+     */
+    public function paypal()
+    {
+        return $this->render('landing_page/partials/paypal.html.twig', [
 
         ]);
     }

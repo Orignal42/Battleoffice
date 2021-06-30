@@ -1,5 +1,6 @@
-
-<h5 class="center">Paiement</h5>
+{% extends 'base.html.twig' %}
+{% block body %}
+<h1 class="center">Paiement</h1>
 
     <div id="card" class="input-field col s12 l6">
         <input id="card_name" type="text" class="validate">
@@ -16,11 +17,10 @@
     <div class="input-field col s12 l6">
         <button class="btn btn-large waves-effect waves-light pink lighten-1 col s12" type="submit">
             Payer
-           
         </button>
     </div>
 
-
+{% endblock %}
 {% block javascripts %}
     <script src="https://js.stripe.com/v3/"></script>
     <script>

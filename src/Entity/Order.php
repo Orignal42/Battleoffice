@@ -46,7 +46,7 @@ class Order
     private $product;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Client::class)
+     * @ORM\ManyToOne(targetEntity=Client::class, cascade={"persist"})
      */
     private $client;
 
