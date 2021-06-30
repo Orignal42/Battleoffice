@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3edd9db0032444f5aadecdae02e68553",
+    "content-hash": "89357594d5c549a62ec1236545de95cd",
     "packages": [
         {
             "name": "api-platform/core",
@@ -2449,16 +2449,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v7.80.0",
+            "version": "v7.86.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "566900968407302f88a925ba731c87c05fe98a7a"
+                "reference": "7a56d1066305afe2601f39bed5b1caf277f829c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/566900968407302f88a925ba731c87c05fe98a7a",
-                "reference": "566900968407302f88a925ba731c87c05fe98a7a",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/7a56d1066305afe2601f39bed5b1caf277f829c7",
+                "reference": "7a56d1066305afe2601f39bed5b1caf277f829c7",
                 "shasum": ""
             },
             "require": {
@@ -2502,7 +2502,11 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2021-05-26T19:10:43+00:00"
+            "support": {
+                "issues": "https://github.com/stripe/stripe-php/issues",
+                "source": "https://github.com/stripe/stripe-php/tree/v7.86.0"
+            },
+            "time": "2021-06-25T16:48:21+00:00"
         },
         {
             "name": "symfony/apache-pack",

@@ -17,7 +17,7 @@
         "phpdocumentor/reflection-docblock": "^5.2",
         "ramsey/uuid": "^3.7",
         "sensio/framework-extra-bundle": "^5.1",
-        "stripe/stripe-php": "^7.79",
+        "stripe/stripe-php": "^7.86",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "5.2.*",
         "symfony/console": "5.2.*",

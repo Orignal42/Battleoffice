@@ -30,7 +30,7 @@ class LandingPageController extends AbstractController
         return $this->render('landing_page/index.html.twig', [
             'products'=>$productRepository-> findall(),
 //PERMET DE CREER LA VIEW DU FORMULAIRE
-            'form'=>$form->createView()
+       'form'=>$form->createView()
         
         ]);
     }
@@ -40,6 +40,17 @@ class LandingPageController extends AbstractController
     public function confirmation()
     {
         return $this->render('landing_page/confirmation.html.twig', [
+
+        ]);
+    }
+
+
+     /**
+     * @Route("/stripe", name="stripe")
+     */
+    public function stripe()
+    {
+        return $this->render('landing_page/partials/stripe.html.twig', [
 
         ]);
     }

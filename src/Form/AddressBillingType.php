@@ -27,7 +27,7 @@ class AddressBillingType extends AbstractType
             ],
         ])
             ->add('phone')
-            ->add('user')
+           
         ;
     }
 
