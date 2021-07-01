@@ -1,24 +1,28 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<h1 class="center">Paiement</h1>
+<h5 class="center">Paiement</h5>
 
-    <div id="card" class="input-field col s12 l6">
+    <div id="card" class="input-field col s12">
         <input id="card_name" type="text" class="validate">
         <label for="card_name">Nom sur la carte</label>
     </div>
 
-    <div id="card-element" class="input-fields col s12 l6">
+    <div id="card-element" class="input-field col s12">
         <input id="card-element" type="text" class="validate">
         <label for="card-element" for="card_number">Numéro de la carte</label>
     </div>
 
-
+    <div class="input-field col s12 l6">
+        <a href="{{path ('landing_page')}}" class="btn btn-large waves-effect waves-light grey col s12">Annuler</a>
+    </div>
 
     <div class="input-field col s12 l6">
         <button class="btn btn-large waves-effect waves-light pink lighten-1 col s12" type="submit">
-            Payer
+            Participer
+            <i class="material-icons right">euro_symbol</i>
         </button>
     </div>
+
 
 {% endblock %}
 {% block javascripts %}

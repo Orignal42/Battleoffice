@@ -31,12 +31,12 @@ class Order
  
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string",  length=255)
      */
     private $status;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $id_api_response;
 

@@ -35,12 +35,31 @@ class LandingPageController extends AbstractController
         $form = $this->createForm(OrderType::class, $order);
         $form->handleRequest($request);    
 
-          if ($form->isSubmitted() && $form->isValid()) {   
-                  
-            
+          if ($form->isSubmitted() && $form->isValid()) { 
+              
+            $productid=$request->get('id');
+            $product=$productRepository->findOneBy(['id'=>$productid]);
+            $order->setProduct($product); 
+            $order->setStatus('WAITING');
+            $client = $order->getClient();
             $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($client);
+            $entityManager->flush();
+            $adress = $order->getAddress();  
+            $adress->setUser($client);
+            $entityManager->persist($adress);
+            // Permet de récuperer l'input
+            $paymentid=$request->get('payment');
+            // Recuperer l'objet Order pour ensuite inserer dans le setpayment
+            $order->setPaymentMethod($paymentid);
             $entityManager->persist($order);
             $entityManager->flush();
+
+
+
+
+
+            
           
 
             return $this->redirectToRoute('stripe');
@@ -55,21 +74,10 @@ class LandingPageController extends AbstractController
             'form'=>$form->createView()  
         ]);
         
-        $productid=$request->get('id');
-        $product=$productRepository->findOneBy(['id'=>$productid]);
-        $order->setProduct($product); 
+   
         
 
-        
-    //  \Stripe\Stripe::setApiKey('sk_test_51IudYJE6zq9JtjMeKaLVqVeD5DU44TdEw2kFMuak62VLwymNNoUTQpvqJEgaHZCAzh10DAo6f6P9O4bJsLc5qzSY00IVms15NF');
-    //  $paymentIntent = \Stripe\PaymentIntent::create([
-    //      'amount' => $order->getPrice()*100,
-    //      'currency' => 'eur'
-    //  ]);
-    //  $output = [
-    //      'clientSecret' => $paymentIntent->client_secret,
-    //  ];
-
+  
  
 
 }      
@@ -88,9 +96,18 @@ class LandingPageController extends AbstractController
      * @Route("/stripe", name="stripe")
      */
     public function stripe()
-    {
+    { 
         return $this->render('landing_page/partials/stripe.html.twig', [
-
+                   
+    //  \Stripe\Stripe::setApiKey('sk_test_51IudYJE6zq9JtjMeKaLVqVeD5DU44TdEw2kFMuak62VLwymNNoUTQpvqJEgaHZCAzh10DAo6f6P9O4bJsLc5qzSY00IVms15NF');
+    //  $paymentIntent = \Stripe\PaymentIntent::create([
+    //      'amount' => $order->getPrice()*100,
+    //      'currency' => 'eur'
+    //  ]);
+    //  $output = [
+    //      'clientSecret' => $paymentIntent->client_secret,
+    //  ];
+   
         ]);
     }
 
