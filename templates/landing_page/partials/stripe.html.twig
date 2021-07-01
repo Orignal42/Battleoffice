@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<h5 class="center">Paiement</h5>
+ <h5 class="center">Paiement</h5>
 
     <div id="card" class="input-field col s12">
         <input id="card_name" type="text" class="validate">
@@ -12,9 +12,7 @@
         <label for="card-element" for="card_number">Numéro de la carte</label>
     </div>
 
-    <div class="input-field col s12 l6">
-        <a href="{{path ('landing_page')}}" class="btn btn-large waves-effect waves-light grey col s12">Annuler</a>
-    </div>
+    
 
     <div class="input-field col s12 l6">
         <button class="btn btn-large waves-effect waves-light pink lighten-1 col s12" type="submit">
@@ -22,8 +20,6 @@
             <i class="material-icons right">euro_symbol</i>
         </button>
     </div>
-
-
 {% endblock %}
 {% block javascripts %}
     <script src="https://js.stripe.com/v3/"></script>
@@ -45,7 +41,7 @@
     var card = elements.create('card', {style: style});
 
         // Add an instance of the card Element into the `card-element` <div>.
-    card.mount('#card-element');
+    card.('#card-element');
 
 </script>
 

@@ -36,10 +36,13 @@ class LandingPageController extends AbstractController
         $form->handleRequest($request);    
 
           if ($form->isSubmitted() && $form->isValid()) { 
-              
+                               
+         
+            
             $productid=$request->get('id');
             $product=$productRepository->findOneBy(['id'=>$productid]);
             $order->setProduct($product); 
+   
             $order->setStatus('WAITING');
             $client = $order->getClient();
             $entityManager = $this->getDoctrine()->getManager();
@@ -53,18 +56,21 @@ class LandingPageController extends AbstractController
             // Recuperer l'objet Order pour ensuite inserer dans le setpayment
             $order->setPaymentMethod($paymentid);
             $entityManager->persist($order);
-            $entityManager->flush();
-
-
-
-
-
+            $entityManager->flush();        
+       if($request->get('payment')=='stripe'){
+            return $this->redirectToRoute('stripe' ,[
+                'id' => $order->getId(),
             
-          
-
-            return $this->redirectToRoute('stripe');
-        }
-
+        ]);
+    }
+        else{
+            return $this->redirectToRoute('paypal' ,[
+                'id' => $order->getId(),
+             
+        ]);
+    }
+  }
+        
 
 
        //PERMET DE RETOURNER ET DE CREER Les cartes DES PRODUITS dans l'index 
@@ -93,29 +99,35 @@ class LandingPageController extends AbstractController
 
 
      /**
-     * @Route("/stripe", name="stripe")
+     * @Route("/{id}/stripe", name="stripe")
      */
-    public function stripe()
-    { 
-        return $this->render('landing_page/partials/stripe.html.twig', [
-                   
-    //  \Stripe\Stripe::setApiKey('sk_test_51IudYJE6zq9JtjMeKaLVqVeD5DU44TdEw2kFMuak62VLwymNNoUTQpvqJEgaHZCAzh10DAo6f6P9O4bJsLc5qzSY00IVms15NF');
-    //  $paymentIntent = \Stripe\PaymentIntent::create([
-    //      'amount' => $order->getPrice()*100,
-    //      'currency' => 'eur'
-    //  ]);
-    //  $output = [
-    //      'clientSecret' => $paymentIntent->client_secret,
-    //  ];
-   
-        ]);
+    public function stripe(Order $order, ProductRepository $productRepository)
+    {
+      $product=$productRepository->findOneBy(['id'=>$order->getProduct()]);
+  
+      \Stripe\Stripe::setApiKey('sk_test_51IudYJE6zq9JtjMeKaLVqVeD5DU44TdEw2kFMuak62VLwymNNoUTQpvqJEgaHZCAzh10DAo6f6P9O4bJsLc5qzSY00IVms15NF');
+      $paymentIntent = \Stripe\PaymentIntent::create([
+          'price' => $product->getPrice()*100,
+          'currency' => 'eur'
+      ]);
+      $output = [
+          'clientSecret' => $paymentIntent->client_secret,
+      ];
+        return $this->render('landing_page/partials/stripe.html.twig',[
+
+           'price'=>$product->getPrice() 
+           
+        ]
+       );
+
+      
     }
 
       /**
      * @Route("/paypal", name="paypal")
      */
     public function paypal()
-    {
+    { 
         return $this->render('landing_page/partials/paypal.html.twig', [
 
         ]);
