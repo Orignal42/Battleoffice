@@ -37,7 +37,7 @@ class LandingPageController extends AbstractController
         $form = $this->createForm(OrderType::class, $order);
         $form->handleRequest($request);    
 
-          if ($form->isSubmitted() && $form->isValid()) { 
+        if ($form->isSubmitted() && $form->isValid()) { 
                                     
             
             $productid=$request->get('id');
@@ -79,20 +79,25 @@ class LandingPageController extends AbstractController
             $entityManager->flush();
         
             
-        if($request->get('payment')=='stripe'){
-        //  $this->HTTP($client, $address, $product, $order);
-            return $this->redirectToRoute('stripe' ,[
-                    'id' => $order->getId(),
+            if($request->get('payment')=='stripe'){
+            $content = $this->HTTP($client, $address, $product, $order);         $order->setIdApiResponse($content['order_id']);
+            
+        
+            $entityManager->persist($order);
+            $entityManager->flush();
                 
-            ]);
+                
+                return $this->redirectToRoute('stripe' ,[
+                        'id' => $order->getId(),
+                    
+                ]);
+            }else{
+            //  $this->HTTP($client, $address, $product, $order);
+                return $this->redirectToRoute('paypal' ,[
+                    'id' => $order->getId(),
+                ]);
+            }
         }
-        else{
-        //  $this->HTTP($client, $address, $product, $order);
-            return $this->redirectToRoute('paypal' ,[
-                'id' => $order->getId(),
-            ]);
-        }
-  }
         
 
 
@@ -104,17 +109,14 @@ class LandingPageController extends AbstractController
         ]);
         
    
-        
-
-  
- 
-
-}      
+    }      
     /**
      * @Route("/confirmation", name="confirmation")
      */
     public function confirmation()
     {
+
+        
         return $this->render('landing_page/confirmation.html.twig', [
 
         ]);
@@ -128,23 +130,36 @@ class LandingPageController extends AbstractController
     {   
        
       $product=$productRepository->findOneBy(['id'=>$order->getProduct()]);
+        return $this->render('landing_page/partials/stripe.html.twig',[
+               
+           'price'=>$product->getPrice() ,
+           'order'=>$order 
+           
+        ]
+       );
+    }
+     /**
+     * @Route("/stripeprocess/{id}", name="stripe_process")
+     */
+    public function stripe_process(Request $request,Order $order, ProductRepository $productRepository)
+    {   
+       
+      $product=$productRepository->findOneBy(['id'=>$order->getProduct()]);
       \Stripe\Stripe::setApiKey('sk_test_51IudYJE6zq9JtjMeKaLVqVeD5DU44TdEw2kFMuak62VLwymNNoUTQpvqJEgaHZCAzh10DAo6f6P9O4bJsLc5qzSY00IVms15NF');
       $paymentIntent = \Stripe\PaymentIntent::create([
           'amount' => $product->getPrice()*100,
           'currency' => 'eur'
       ]);
+      $order->setStatus('PAID');
+      $this->PAID($order);
+      $entityManager = $this->getDoctrine()->getManager();
+      $entityManager->persist($order);
+      $entityManager->flush();
 
 
-        return $this->render('landing_page/partials/stripe.html.twig',[
-               
-           'price'=>$product->getPrice() 
-           
-        ]
-       );
 
-     
+      return $this->redirectToRoute('confirmation');
     }
-
       /**
      * @Route("/paypal{id}", name="paypal")
      */
@@ -208,7 +223,33 @@ class LandingPageController extends AbstractController
         return $content;
     }
 
-}  
+    public function PAID( Order $order)
+    {   
+        $token = 'mJxTXVXMfRzLg6ZdhUhM4F6Eutcm1ZiPk4fNmvBMxyNR4ciRsc8v0hOmlzA0vTaX';
+        $data = [
+                "status" => $order->getStatus()
+        ]; 
+    
+        $data = json_encode($data);
+        $httpClient = HttpClient::create();
+        $response = $httpClient->request('POST', 'https://api-commerce.simplon-roanne.com/order/'. $order->getIdApiResponse()."/status", [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token,
+                'Content-Type' => 'application/json',
+            ],
+            'body' => $data
+        ]);
+
+        $statusCode = $response->getStatusCode();
+        $contentType = $response->getHeaders()['content-type'][0];
+        $content2 = $response->getContent();
+        $content2 = $response->toArray();
+     
+        return $content2;
+    }
+
+}
+
        
 
 

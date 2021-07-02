@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
- <FORM method="post">
+ <form method="post" action="{{path ('stripe_process', {id: order.id })}}">
 <h1 class="center">Paiement</h1>
 
     <div id="card" class="input-field col s12 l6">
@@ -16,9 +16,9 @@
 
 
     <div class="input-field col s12 l6">
-        <a href={{path ('confirmation')}} class="btn btn-large waves-effect waves-light pink lighten-1 col s12" type="submit" >
+        <button  class="btn btn-large waves-effect waves-light pink lighten-1 col s12" type="submit" >
             Payer
-        </a>
+        </button>
     </div>
 </form>
 {% endblock %}
