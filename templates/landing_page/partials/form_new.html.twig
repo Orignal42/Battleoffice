@@ -117,7 +117,7 @@
                 
                 {{ form_widget(form.Address.firstname)}}
                 {{ form_label(form.Address.firstname, 'votre nom', {
-                    'label_attr': {'class': 'client'}
+                    'label_attr': {novalidate: 'novalidate'} 
                 }) }}
                  {{ form_errors(form.Address.firstname) }}
                 </div>
@@ -126,7 +126,7 @@
                 
                 {{ form_widget(form.Address.lastname)}}
                 {{ form_label(form.Address.lastname, 'votre prénom', {
-                    'label_attr': {'class': 'client'}
+                    'label_attr': {novalidate: 'novalidate'} 
                 }) }}
                  {{ form_errors(form.Address.lastname) }}
                 </div>
@@ -135,7 +135,7 @@
                 
                 {{ form_widget(form.Address.address_billing_line1)}}
                 {{ form_label(form.Address.address_billing_line1, 'votre adresse', {
-                    'label_attr': {'class': 'client'}
+                    'label_attr': {novalidate: 'novalidate'}
                 }) }}
                  {{ form_errors(form.Address.address_billing_line1) }}
                 </div>
@@ -144,7 +144,7 @@
                 
                 {{ form_widget(form.Address.address_billing_line2)}}
                 {{ form_label(form.Address.address_billing_line2, "votre complément d'adresse", {
-                    'label_attr': {'class': 'client'}
+                    'label_attr':{novalidate: 'novalidate'}
                 }) }}
                  {{ form_errors(form.Address.address_billing_line2) }}
                 </div>
@@ -153,7 +153,7 @@
                 
                 {{ form_widget(form.Address.city)}}
                 {{ form_label(form.Address.city, 'votre ville', {
-                    'label_attr': {'class': 'client'}
+                    'label_attr': {novalidate: 'novalidate'} 
                 }) }}
                  {{ form_errors(form.Address.city) }}
                 </div>
@@ -161,7 +161,7 @@
                            
                 {{ form_widget(form.Address.zipcode)}}
                 {{ form_label(form.Address.zipcode, 'votre code postale', {
-                    'label_attr': {'class': 'client'}
+                    'label_attr':{novalidate: 'novalidate'}
                 }) }}
                  {{ form_errors(form.Address.zipcode) }}
                 </div>
@@ -169,7 +169,7 @@
                            
                 {{ form_widget(form.Address.country)}}
                 {{ form_label(form.Address.country, 'votre pays', {
-                    'label_attr': {'class': 'client'}
+                    'label_attr':{novalidate: 'novalidate'}  
                 }) }}
                  {{ form_errors(form.Address.country) }}
                 </div>
@@ -178,7 +178,7 @@
                 
                 {{ form_widget(form.Address.phone)}}
                 {{ form_label(form.Address.phone, 'votre téléphone', {
-                    'label_attr': {'class': 'Address'}
+                    'label_attr':{novalidate: 'novalidate'}
                 }) }}
                  {{ form_errors(form.Address.phone) }}
             </div>

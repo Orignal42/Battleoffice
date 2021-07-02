@@ -48,20 +48,29 @@ class LandingPageController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($client);
             $entityManager->flush();
-             $adress = $order->getAddress();  
-            if ($adress){
-            $adress->setUser($client);
-            $entityManager->persist($adress);
-        }
-            else {
-                $address = $order->getClient()->getFirstname();
-                $address = $order->getClient()->getLasttname();
-                $address = $order->getClient()->getAddressLine1();
-                $address = $order->getClient()->getAddressLine2();
-                $address = $order->getClient()->getPhone();
-                dd($address);
-                $entityManager->persist($client);
+             $address = $order->getAddress(); 
+             
+            if ($address->getFirstname()==null && 
+                $address->getLastname()==null && 
+                $address->getAddressBillingLine1()==null && 
+                $address->getAddressBillingLine2()==null && 
+                $address->getPhone()==null &&
+                $address->getCity()==null && 
+                $address->getZipcode()==null){
+
+                $address->setFirstname( $order->getClient()->getFirstname());
+                $address->setLastname( $order->getClient()->getLastname());
+                $address->setAddressBillingLine1( $order->getClient()->getAddressLine1());
+                $address->setAddressBillingLine2( $order->getClient()->getAddressLine2());
+                $address->setPhone( $order->getClient()->getPhone());
+                $address->setCountry( $order->getClient()->getCountry());
+                $address->setCity( $order->getClient()->getCity());
+                $address->setZipcode( $order->getClient()->getZipcode());
+            
+               
             }
+
+            $entityManager->persist($address);
                        // Permet de récuperer l'input
             $paymentid=$request->get('payment');
             // Recuperer l'objet Order pour ensuite inserer dans le setpayment
@@ -71,14 +80,14 @@ class LandingPageController extends AbstractController
         
             
         if($request->get('payment')=='stripe'){
-        //  $this->HTTP($client, $adress, $product, $order);
+        //  $this->HTTP($client, $address, $product, $order);
             return $this->redirectToRoute('stripe' ,[
                     'id' => $order->getId(),
                 
             ]);
         }
         else{
-        //  $this->HTTP($client, $adress, $product, $order);
+        //  $this->HTTP($client, $address, $product, $order);
             return $this->redirectToRoute('paypal' ,[
                 'id' => $order->getId(),
             ]);
