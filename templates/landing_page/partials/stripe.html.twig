@@ -1,28 +1,29 @@
 {% extends 'base.html.twig' %}
 {% block body %}
- <h5 class="center">Paiement</h5>
+ <FORM method="post">
+<h1 class="center">Paiement</h1>
 
-    <div id="card" class="input-field col s12">
-        <input id="card_name" type="text" class="validate">
+    <div id="card" class="input-field col s12 l6">
+        <input id="card_name" type="text" class="validate" required>
         <label for="card_name">Nom sur la carte</label>
     </div>
 
-    <div id="card-element" class="input-field col s12">
-        <input id="card-element" type="text" class="validate">
+    <div id="card-element" class="input-fields col s12 l6">
+        <input id="card-element" type="text" class="validate" required>
         <label for="card-element" for="card_number">Numéro de la carte</label>
     </div>
 
-    
+
 
     <div class="input-field col s12 l6">
-        <button class="btn btn-large waves-effect waves-light pink lighten-1 col s12" type="submit">
-            Participer
-            <i class="material-icons right">euro_symbol</i>
-        </button>
+        <a href={{path ('confirmation')}} class="btn btn-large waves-effect waves-light pink lighten-1 col s12" type="submit" >
+            Payer
+        </a>
     </div>
+</form>
 {% endblock %}
 {% block javascripts %}
-    <script src="https://js.stripe.com/v3/"></script>
+   
     <script>
 
     let stripe = Stripe("pk0_test_51IudYJE6zq9JtjMeicjOrAVK20EPg4tDenbOCJR8qlP9UOTXSyZNFPEc7m6q1I5Gd8LhewzKZapzBhqSN2A20Pv900JLvBFwXS");
@@ -41,7 +42,7 @@
     var card = elements.create('card', {style: style});
 
         // Add an instance of the card Element into the `card-element` <div>.
-    card.('#card-element');
+    card.mount('#card-element');
 
 </script>
 
