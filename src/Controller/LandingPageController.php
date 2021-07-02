@@ -19,6 +19,8 @@ use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\CachingHttpClient;
 use Symfony\Component\HttpKernel\HttpCache\Store;
 
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 
 
@@ -113,10 +115,10 @@ class LandingPageController extends AbstractController
     /**
      * @Route("/confirmation", name="confirmation")
      */
-    public function confirmation()
-    {
+    public function confirmation(MailerInterface $mailer)
+    {  $this->sendEmail($mailer); 
 
-        
+
         return $this->render('landing_page/confirmation.html.twig', [
 
         ]);
@@ -248,6 +250,24 @@ class LandingPageController extends AbstractController
         return $content2;
     }
 
+    public function sendEmail(MailerInterface $mailer)
+    {
+        $email = (new Email())
+            ->from('hello@example.com')
+            ->to('you@example.com')
+            //->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject('Time for Symfony Mailer!')
+            ->text('Sending emails is fun again!')
+            ->html('<p>See Twig integration for better HTML integration!</p>');
+
+        $mailer->send($email);
+
+        // ...
+    }
+   
 }
 
        
